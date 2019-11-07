@@ -1,6 +1,4 @@
-type Tjiodo @model {
+type Note @model {
   id: ID!
-  name: String!
-  description: String
+  note: String!
 }
-

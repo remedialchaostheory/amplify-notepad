@@ -34,3 +34,8 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
+
+#amplify custom
+.amplifyrc
+.graphqlconfig.yml
+amplify

@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"notepad13dae6bb": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

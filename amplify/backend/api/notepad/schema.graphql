@@ -1,0 +1,6 @@
+type Tjiodo @model {
+  id: ID!
+  name: String!
+  description: String
+}
+

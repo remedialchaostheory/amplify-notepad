@@ -68,22 +68,24 @@ class Notepad extends Component {
 
   render() {
     return (
-        <div className="flex flex-column items-center center mw8 pa3 vh-100 br4 bg-washed-yellow">
-          <h1 className="avenir f2-l">Notepad</h1>
-          <NoteForm
-              form={this.state.form}
-              handleAddNote={this.handleAddNote}
-              updateNotes={this.updateNotes}
-              handleEditNote={this.handleEditNote}
-              handleChangeNote={this.handleChangeNote}
-              handleHover={this.handleHover}
-              isHovered={this.state.isHovered}
-          />
-          <NoteList
-              notes={this.state.notes}
-              handleEditNote={this.handleEditNote}
-              handleDeleteNote={this.handleDeleteNote}
-          />
+        <div className="center mw8 pa3 vh-100 br4 bg-washed-yellow">
+          <h1 className="tc avenir">Notepad</h1>
+          <div className="flex justify-center items-center">
+            <NoteForm
+                form={this.state.form}
+                handleAddNote={this.handleAddNote}
+                updateNotes={this.updateNotes}
+                handleEditNote={this.handleEditNote}
+                handleChangeNote={this.handleChangeNote}
+                handleHover={this.handleHover}
+                isHovered={this.state.isHovered}
+            />
+            <NoteList
+                notes={this.state.notes}
+                handleEditNote={this.handleEditNote}
+                handleDeleteNote={this.handleDeleteNote}
+            />
+          </div>
         </div>
     );
   }

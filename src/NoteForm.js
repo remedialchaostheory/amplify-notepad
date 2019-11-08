@@ -10,19 +10,19 @@ class NoteForm extends Component {
 
   render() {
     return (
-        <div className="avenir">
+        <div className="fl w-100 w-35-ns avenir">
           <form
-              className="mb3"
+              className="mb3 fr mr4"
               onSubmit={this.props.handleAddNote}>
             <input
                 type="text"
-                className="pa2 f4 br2"
+                className="pa1 f4 br2"
                 placeholder="Write your note here"
                 onChange={this.props.handleChangeNote}
                 value={this.props.form}
             />
             <button
-                className={`pa2 f4 ml1 br4 br--right ${this.props.isHovered && 'dim bg-washed-green'}`}
+                className={`pa1 f4 ml1 br4 br--right ${this.props.isHovered && 'dim bg-washed-green'}`}
                 onMouseEnter={this.props.handleHover}
                 onMouseLeave={this.props.handleHover}
                 type="submit">

@@ -1,11 +1,13 @@
 import React from 'react';
+import Notepad from "./Notepad";
+import { withAuthenticator} from "aws-amplify-react";
 
 function App() {
   return (
     <div>
-      App
+      <Notepad />
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App, true);

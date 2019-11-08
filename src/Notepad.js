@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NoteForm from "./NoteForm";
+import NoteList from "./NoteList";
 
 class Notepad extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class Notepad extends Component {
     this.state = {
       notes: [
         {
-          id:1,
+          id: 1,
           note: "hello stone world",
         },
       ]
@@ -15,9 +16,10 @@ class Notepad extends Component {
   }
   render() {
     return (
-        <div className="flex flex-column items-center justify-center pa3 bg-washed-red">
+        <div className="flex flex-column items-center justify-center pa3 bg-washed-yellow">
           <h1 className="code f2-l">Notepad</h1>
           <NoteForm />
+          <NoteList notes={this.state.notes}/>
         </div>
     );
   }

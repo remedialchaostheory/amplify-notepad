@@ -22,6 +22,7 @@ class NoteForm extends Component {
     const resp = await API.graphql(graphqlOperation(createNote, { input: input }));
     const newNote = resp.data.createNote;
     this.props.updateNotes(newNote);
+    this.setState({ note: "" });
   };
 
   render() {
@@ -33,6 +34,7 @@ class NoteForm extends Component {
                 className="pa2 f4 br2"
                 placeholder="Write your note here"
                 onChange={this.handleChangeNote}
+                value={this.state.note}
             />
             <button className="pa2 f4 br4 br--right" type="submit">Add note</button>
           </form>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
+import { API, graphqlOperation } from "aws-amplify";
+import { deleteNote } from "./graphql/mutations";
 import { listNotes } from "./graphql/queries";
-import {API, graphqlOperation} from "aws-amplify";
 
 class Notepad extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Notepad extends Component {
       notes: []
     };
     this.updateNotes = this.updateNotes.bind(this);
-
+    this.handleDeleteNote = this.handleDeleteNote.bind(this);
   }
 
   async componentDidMount() {
@@ -26,12 +27,20 @@ class Notepad extends Component {
     console.log('this.state.notes ->', this.state.notes);
   };
 
+  handleDeleteNote = async noteId => {
+    const input = { id: noteId };
+    const resp = await API.graphql(graphqlOperation(deleteNote, { input }));
+    const deletedNoteId = resp.data.deleteNote.id;
+    const updatedNotes = this.state.notes.filter(note => note.id !== deletedNoteId);
+    this.setState({ notes: updatedNotes });
+  };
+
   render() {
     return (
         <div className="flex flex-column items-center center mw8 pa3 vh-100 br4 bg-washed-yellow">
-          <h1 className="avenir f2-l ">Notepad</h1>
+          <h1 className="avenir f2-l">Notepad</h1>
           <NoteForm updateNotes={this.updateNotes}/>
-          <NoteList notes={this.state.notes}/>
+          <NoteList notes={this.state.notes} handleDeleteNote={this.handleDeleteNote}/>
         </div>
     );
   }

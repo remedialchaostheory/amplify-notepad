@@ -9,7 +9,10 @@ class NoteList extends Component {
                 <li className="list pa1 fa3">
                   {note.note}
                 </li>
-                <button className="bg-transparent bn f4">
+                <button
+                    className="bg-transparent bn f4"
+                    onClick={() => this.props.handleDeleteNote(note.id)}
+                >
                   <span>&times;</span>
                 </button>
               </div>

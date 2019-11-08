@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
 import { API, graphqlOperation } from "aws-amplify";
-import {createNote, deleteNote} from "./graphql/mutations";
+import { createNote, deleteNote, updateNote } from "./graphql/mutations";
 import { listNotes } from "./graphql/queries";
 
 class Notepad extends Component {
@@ -10,11 +10,13 @@ class Notepad extends Component {
     super(props);
     this.state = {
       notes: [],
+      id: "",
       form: "",
       isHovered: false,
     };
     this.handleAddNote = this.handleAddNote.bind(this);
     this.handleEditNote = this.handleEditNote.bind(this);
+    this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleChangeNote = this.handleChangeNote.bind(this);
     this.handleHover = this.handleHover.bind(this);
@@ -26,25 +28,54 @@ class Notepad extends Component {
     this.setState({ notes: updatedNotes })
   }
 
+  hasExistingNote = () => {
+    if (this.state.id) {
+      const isNote = this.state.notes.findIndex(note => note.id === this.state.id) > -1;
+      return isNote;
+    }
+    return false;
+  };
+
   handleAddNote = async e => {
-    // Need to keep this logic in NoteForm because form data needs to be submitted
     e.preventDefault();
-    const input = { note: this.state.form };
-    console.log('input ->', input);
-    const resp = await API.graphql(graphqlOperation(createNote, { input: input }));
-    console.log('resp ->', resp);
-    const newNote = resp.data.createNote;
-    console.log('newNote ->', newNote);
+    if (this.hasExistingNote()) {
+      this.handleUpdateNote();
+    } else {
+      const input = { note: this.state.form };
+      const resp = await API.graphql(graphqlOperation(createNote, { input: input }));
+      const newNote = resp.data.createNote;
+      this.setState({
+        notes: [newNote, ...this.state.notes],
+        form: "",
+      });
+    }
+  };
+
+  handleUpdateNote =  async () => {
+    const input = {
+      id: this.state.id,
+      note: this.state.form,
+    };
+    const resp = await API.graphql(graphqlOperation(updateNote, {input: input }));
+    const updatedNote = resp.data.updateNote;
+    const index = this.state.notes.findIndex(note => note.id === updatedNote.id);
+    const updatedNotes = [
+        ...this.state.notes.slice(0, index),
+        updatedNote,
+        ...this.state.notes.slice(index + 1)
+    ];
     this.setState({
-      notes: [newNote, ...this.state.notes],
+      notes: updatedNotes,
+      id: "",
       form: "",
     });
   };
 
   handleEditNote(e) {
-    this.setState({form: e.note});
-  //  if id is already in note list, send an update
-  //  else, add
+    this.setState({
+      form: e.note,
+      id: e.id,
+    });
   }
 
 

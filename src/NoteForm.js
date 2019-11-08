@@ -14,13 +14,15 @@ class NoteForm extends Component {
 
   handleChangeNote(e) { this.setState({ note: e.target.value }) }
 
-  handleAddNote(e) {
+  handleAddNote = async e => {
     e.preventDefault();
     const input = {
       note: this.state.note,
     };
-    API.graphql(graphqlOperation(createNote, { input: input }));
-  }
+    const resp = await API.graphql(graphqlOperation(createNote, { input: input }));
+    const newNote = resp.data.createNote;
+    this.props.updateNotes(newNote);
+  };
 
   render() {
     return (

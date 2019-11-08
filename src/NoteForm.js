@@ -18,7 +18,7 @@ class NoteForm extends Component {
                 type="text"
                 className="pa1 f4 br2"
                 placeholder="Write your note here"
-                onChange={this.props.handleChangeNote}
+                onChange={this.props.handleChangeNote} // TODO - rename this or add a relevant comment
                 value={this.props.form}
             />
             <button

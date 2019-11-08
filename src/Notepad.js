@@ -13,7 +13,6 @@ class Notepad extends Component {
       form: "",
       isHovered: false,
     };
-    this.updateNotes = this.updateNotes.bind(this);
     this.handleAddNote = this.handleAddNote.bind(this);
     this.handleEditNote = this.handleEditNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
@@ -26,11 +25,6 @@ class Notepad extends Component {
     const updatedNotes = resp.data.listNotes.items;
     this.setState({ notes: updatedNotes })
   }
-
-  updateNotes = newNote => {
-    console.log('newNote ->', newNote);
-    console.log('this.state.notes ->', this.state.notes);
-  };
 
   handleAddNote = async e => {
     // Need to keep this logic in NoteForm because form data needs to be submitted
@@ -48,7 +42,9 @@ class Notepad extends Component {
   };
 
   handleEditNote(e) {
-
+    this.setState({form: e.note});
+  //  if id is already in note list, send an update
+  //  else, add
   }
 
 
@@ -74,7 +70,6 @@ class Notepad extends Component {
             <NoteForm
                 form={this.state.form}
                 handleAddNote={this.handleAddNote}
-                updateNotes={this.updateNotes}
                 handleEditNote={this.handleEditNote}
                 handleChangeNote={this.handleChangeNote}
                 handleHover={this.handleHover}

@@ -104,6 +104,7 @@ class Notepad extends Component {
                 handleEditNote={this.handleEditNote}
                 handleChangeNote={this.handleChangeNote}
                 handleHover={this.handleHover}
+                isUpdate={this.state.id}
                 isHovered={this.state.isHovered}
             />
             <NoteList

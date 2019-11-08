@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NoteForm from "./NoteForm";
 
 class Notepad extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Notepad extends Component {
     return (
         <div className="flex flex-column items-center justify-center pa3 bg-washed-red">
           <h1 className="code f2-l">Notepad</h1>
+          <NoteForm />
         </div>
     );
   }

@@ -17,7 +17,7 @@ class Notepad extends Component {
   render() {
     return (
         <div className="flex flex-column items-center justify-center pa3 bg-washed-yellow">
-          <h1 className="code f2-l">Notepad</h1>
+          <h1 className="avenir f2-l ">Notepad</h1>
           <NoteForm />
           <NoteList notes={this.state.notes}/>
         </div>

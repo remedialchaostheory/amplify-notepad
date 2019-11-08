@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class NoteList extends Component {
   render() {
     return (
-        <div>
+        <div className="sans-serif">
           {this.props.notes.map(note => (
               <div key={note.id} className="flex items-center">
                 <li className="list pa1 fa3">

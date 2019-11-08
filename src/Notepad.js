@@ -6,12 +6,7 @@ class Notepad extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: [
-        {
-          id: 1,
-          note: "hello stone world",
-        },
-      ]
+      notes: []
     };
   }
   render() {

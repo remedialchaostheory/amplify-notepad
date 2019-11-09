@@ -33,7 +33,6 @@ class Notepad extends Component {
 
     this.createNoteListener = API.graphql(graphqlOperation(onCreateNote, { owner: this.state.username })).subscribe({
       next: noteData => {
-        console.log('noteData ->', noteData);
         const newNote = noteData.value.data.onCreateNote;
         const prevNotes = this.state.notes.filter(note => note.id !== newNote.id);
         const updatedNotes = [...prevNotes, newNote];

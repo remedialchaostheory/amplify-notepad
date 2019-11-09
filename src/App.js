@@ -4,8 +4,6 @@ import './App.css';
 import { withAuthenticator, AmplifyTheme } from "aws-amplify-react";
 
 function App() {
-  console.dir(AmplifyTheme);
-
   return (
     <div>
       <Notepad />

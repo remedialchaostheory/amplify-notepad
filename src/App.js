@@ -1,13 +1,21 @@
 import React from 'react';
 import Notepad from "./Notepad";
-import { withAuthenticator} from "aws-amplify-react";
+import './App.css';
+import { withAuthenticator, AmplifyTheme } from "aws-amplify-react";
 
 function App() {
+  console.dir(AmplifyTheme);
+
   return (
     <div>
       <Notepad />
+
     </div>
   );
 }
 
-export default withAuthenticator(App, true);
+const theme = {
+  ...AmplifyTheme,
+};
+
+export default withAuthenticator(App, true, [], null, theme);

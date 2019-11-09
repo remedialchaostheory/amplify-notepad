@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Auth } from "aws-amplify";
 import { createNote, deleteNote, updateNote } from "./graphql/mutations";
 import { listNotes } from "./graphql/queries";
 import { onCreateNote, onDeleteNote, onUpdateNote } from "./graphql/subscriptions";
@@ -10,6 +10,7 @@ class Notepad extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: "",
       notes: [],
       id: "",
       form: "",
@@ -22,13 +23,16 @@ class Notepad extends Component {
     this.handleChangeNote = this.handleChangeNote.bind(this);
     this.handleHover = this.handleHover.bind(this);
     this.getNotes = this.getNotes.bind(this);
+    this.getUsername = this.getUsername.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.getNotes();
+    await this.getUsername();
 
-    this.createNoteListener = API.graphql(graphqlOperation(onCreateNote)).subscribe({
+    this.createNoteListener = API.graphql(graphqlOperation(onCreateNote, { owner: this.state.username })).subscribe({
       next: noteData => {
+        console.log('noteData ->', noteData);
         const newNote = noteData.value.data.onCreateNote;
         const prevNotes = this.state.notes.filter(note => note.id !== newNote.id);
         const updatedNotes = [...prevNotes, newNote];
@@ -36,7 +40,7 @@ class Notepad extends Component {
       }
     });
 
-    this.deleteNoteListener = API.graphql(graphqlOperation(onDeleteNote)).subscribe({
+    this.deleteNoteListener = API.graphql(graphqlOperation(onDeleteNote, { owner: this.state.username })).subscribe({
       next: noteData => {
         const deletedNote = noteData.value.data.onDeleteNote;
         const updatedNotes = this.state.notes.filter(note => note.id !== deletedNote.id);
@@ -44,7 +48,7 @@ class Notepad extends Component {
       }
     });
 
-    this.updateNoteListener = API.graphql(graphqlOperation(onUpdateNote)).subscribe({
+    this.updateNoteListener = API.graphql(graphqlOperation(onUpdateNote, { owner: this.state.username })).subscribe({
       next: noteData => {
         const updatedNote = noteData.value.data.onUpdateNote;
         const index = this.state.notes.findIndex(note => note.id === updatedNote.id);
@@ -68,9 +72,15 @@ class Notepad extends Component {
     this.updateNoteListener.unsubscribe();
   }
 
+  getUsername = async () => {
+    const resp = await Auth.currentAuthenticatedUser();
+    this.setState({username: resp.username });
+  };
+
   getNotes = async () => {
     const resp = await API.graphql(graphqlOperation(listNotes));
     const updatedNotes = resp.data.listNotes.items;
+    console.log('updatedNotes ->', updatedNotes);
     this.setState({ notes: updatedNotes })
   };
 
@@ -95,12 +105,12 @@ class Notepad extends Component {
     }
   };
 
-  handleUpdateNote =  async () => {
+  handleUpdateNote = async () => {
     const input = {
       id: this.state.id,
       note: this.state.form,
     };
-    await API.graphql(graphqlOperation(updateNote, {input: input }));
+    await API.graphql(graphqlOperation(updateNote, { input: input }));
   };
 
   handleEditNote(e) {

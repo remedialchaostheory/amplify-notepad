@@ -16,6 +16,15 @@ function App() {
 
 const theme = {
   ...AmplifyTheme,
+  nav: {
+    ...AmplifyTheme.nav,
+    // margin: '0',
+  },
+  navBar: {
+    ...AmplifyTheme.navBar,
+    // margin: '0',
+    // padding: '0px 2px',
+  }
 };
 
 export default withAuthenticator(App, true, [], null, theme);

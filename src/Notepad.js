@@ -4,7 +4,7 @@ import NoteList from "./NoteList";
 import { API, graphqlOperation } from "aws-amplify";
 import { createNote, deleteNote, updateNote } from "./graphql/mutations";
 import { listNotes } from "./graphql/queries";
-import { onCreateNote } from "./graphql/subscriptions";
+import { onCreateNote, onDeleteNote } from "./graphql/subscriptions";
 
 class Notepad extends Component {
   constructor(props) {
@@ -31,6 +31,13 @@ class Notepad extends Component {
         const newNote = noteData.value.data.onCreateNote;
         const prevNotes = this.state.notes.filter(note => note.id !== newNote.id);
         const updatedNotes = [...prevNotes, newNote];
+        this.setState({ notes: updatedNotes });
+      }
+    });
+    this.deleteNoteListener = API.graphql(graphqlOperation(onDeleteNote)).subscribe({
+      next: noteData => {
+        const deletedNote = noteData.value.data.onDeleteNote;
+        const updatedNotes = this.state.notes.filter(note => note.id !== deletedNote.id);
         this.setState({ notes: updatedNotes });
       }
     });
@@ -61,9 +68,7 @@ class Notepad extends Component {
     } else {
       const input = { note: this.state.form };
       await API.graphql(graphqlOperation(createNote, { input: input }));
-      // const newNote = resp.data.createNote;
       this.setState({
-        // notes: [newNote, ...this.state.notes],
         form: "",
       });
     }
@@ -99,10 +104,7 @@ class Notepad extends Component {
 
   handleDeleteNote = async noteId => {
     const input = { id: noteId };
-    const resp = await API.graphql(graphqlOperation(deleteNote, { input }));
-    const deletedNoteId = resp.data.deleteNote.id;
-    const updatedNotes = this.state.notes.filter(note => note.id !== deletedNoteId);
-    this.setState({ notes: updatedNotes });
+    await API.graphql(graphqlOperation(deleteNote, { input }));
   };
 
   handleChangeNote(e) { this.setState({ form: e.target.value }) }

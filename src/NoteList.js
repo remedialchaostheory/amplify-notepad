@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import './NoteList.css';
 
 class NoteList extends Component {
-  // TODO - add grow to x onhover
   // TODO - add strikethrough when deleted
   render() {
     return (
@@ -14,8 +14,9 @@ class NoteList extends Component {
                 >
                   {note.note}
                 </li>
+                {/* Delete */}
                 <button
-                    className="bg-transparent bn f4"
+                    className="bg-transparent bn f4 grow-large"
                     onClick={() => this.props.handleDeleteNote(note.id)}
                 >
                   <span>&times;</span>

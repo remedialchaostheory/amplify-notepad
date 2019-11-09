@@ -1,0 +1,11 @@
+.grow-large {
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform .25s ease-in-out;
+}
+
+.grow-large:hover,
+.grow-large:focus {
+  transform: scale(1.5);
+}

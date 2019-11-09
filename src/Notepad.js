@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
 import { API, graphqlOperation, Auth } from "aws-amplify";
-import { AmplifyTheme } from "aws-amplify-react";
+import { AmplifyTheme } from "aws-amplify-react"; // Necessary to style with custom css in App.css
 import { createNote, deleteNote, updateNote } from "./graphql/mutations";
 import { listNotes } from "./graphql/queries";
 import { onCreateNote, onDeleteNote, onUpdateNote } from "./graphql/subscriptions";

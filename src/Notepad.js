@@ -4,7 +4,7 @@ import NoteList from "./NoteList";
 import { API, graphqlOperation } from "aws-amplify";
 import { createNote, deleteNote, updateNote } from "./graphql/mutations";
 import { listNotes } from "./graphql/queries";
-import { onCreateNote, onDeleteNote } from "./graphql/subscriptions";
+import { onCreateNote, onDeleteNote, onUpdateNote } from "./graphql/subscriptions";
 
 class Notepad extends Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class Notepad extends Component {
 
   componentDidMount() {
     this.getNotes();
+
     this.createNoteListener = API.graphql(graphqlOperation(onCreateNote)).subscribe({
       next: noteData => {
         const newNote = noteData.value.data.onCreateNote;
@@ -34,6 +35,7 @@ class Notepad extends Component {
         this.setState({ notes: updatedNotes });
       }
     });
+
     this.deleteNoteListener = API.graphql(graphqlOperation(onDeleteNote)).subscribe({
       next: noteData => {
         const deletedNote = noteData.value.data.onDeleteNote;
@@ -41,10 +43,29 @@ class Notepad extends Component {
         this.setState({ notes: updatedNotes });
       }
     });
+
+    this.updateNoteListener = API.graphql(graphqlOperation(onUpdateNote)).subscribe({
+      next: noteData => {
+        const updatedNote = noteData.value.data.onUpdateNote;
+        const index = this.state.notes.findIndex(note => note.id === updatedNote.id);
+        const updatedNotes = [
+          ...this.state.notes.slice(0, index),
+          updatedNote,
+          ...this.state.notes.slice(index + 1)
+        ];
+        this.setState({
+          notes: updatedNotes,
+          id: "",
+          form: "",
+        });
+      }
+    })
   }
 
   componentWillUnmount() {
     this.createNoteListener.unsubscribe();
+    this.deleteNoteListener.unsubscribe();
+    this.updateNoteListener.unsubscribe();
   }
 
   getNotes = async () => {
@@ -79,19 +100,7 @@ class Notepad extends Component {
       id: this.state.id,
       note: this.state.form,
     };
-    const resp = await API.graphql(graphqlOperation(updateNote, {input: input }));
-    const updatedNote = resp.data.updateNote;
-    const index = this.state.notes.findIndex(note => note.id === updatedNote.id);
-    const updatedNotes = [
-        ...this.state.notes.slice(0, index),
-        updatedNote,
-        ...this.state.notes.slice(index + 1)
-    ];
-    this.setState({
-      notes: updatedNotes,
-      id: "",
-      form: "",
-    });
+    await API.graphql(graphqlOperation(updateNote, {input: input }));
   };
 
   handleEditNote(e) {

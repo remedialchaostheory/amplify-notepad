@@ -23,13 +23,13 @@ class NoteForm extends Component {
                 value={this.props.form}
             />
             <button
-                className={`pa1 f4 ml1 br3 ${this.props.isHovered && 'dim bg-washed-green'}`}
-                onMouseEnter={this.props.handleHover}
-                onMouseLeave={this.props.handleHover}
+                className={`pa1 f4 ml1 br3 ${this.props.isHoveredButton && 'dim bg-washed-green'}`}
+                onMouseEnter={this.props.handleHoverButton}
+                onMouseLeave={this.props.handleHoverButton}
                 type="submit"
             >
               {this.props.isUpdate ? "Update " : "Add "}
-              {this.props.isHovered && arrowSymbol}
+              {this.props.isHoveredButton && arrowSymbol}
             </button>
           </form>
         </div>

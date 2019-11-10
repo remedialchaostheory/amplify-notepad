@@ -20,7 +20,7 @@ class NoteList extends Component {
                     onMouseLeave={() => this.props.handleHoveredNote("")}
                 >
                   <li
-                      className={`list pa1 fa3 ${this.props.hoveredNote && "dim"} ${strikeOnHoveredCross(note.id)}`}
+                      className={`list bb b--black-10 pa1 fa3 ${this.props.hoveredNote && "dim"} ${strikeOnHoveredCross(note.id)}`}
                       onClick={() => this.props.handleEditNote(note)}
                   >
                     {note.note}

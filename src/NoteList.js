@@ -5,7 +5,7 @@ class NoteList extends Component {
   render() {
     const strikeOnHoveredCross = noteId => (this.props.isHoveredCross && noteId === this.props.hoveredNote) && "strike";
     return (
-        <div className="fl w-100 w-65-ns sans-serif">
+        <div className="fl w-100 w-65-ns sans-serif pointer">
           {this.props.notes.map(note => (
               <div
                   key={note.id}
@@ -21,7 +21,7 @@ class NoteList extends Component {
                 </li>
                 {/* Delete */}
                 <button
-                    className="bg-transparent bn f4 grow-large"
+                    className="bg-transparent bn f4 grow-large pointer"
                     onMouseEnter={this.props.handleHoveredCross}
                     onMouseLeave={this.props.handleHoveredCross}
                     onClick={() => this.props.handleDeleteNote(note.id)}

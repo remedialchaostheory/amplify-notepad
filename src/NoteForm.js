@@ -23,7 +23,7 @@ class NoteForm extends Component {
                 value={this.props.form}
             />
             <button
-                className={`pa1 f4 ml1 br3 ${this.props.isHoveredButton && 'dim bg-washed-green'}`}
+                className={`pa1 f4 ml1 br3 pointer ${this.props.isHoveredButton && 'bg-washed-green'}`}
                 onMouseEnter={this.props.handleHoveredButton}
                 onMouseLeave={this.props.handleHoveredButton}
                 type="submit"

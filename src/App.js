@@ -4,6 +4,7 @@ import './App.css';
 import { withAuthenticator, Authenticator, AmplifyTheme, Greetings } from "aws-amplify-react";
 
 function App() {
+  // TODO - display email or username in navbar greeting
   return (
     <div>
       <Authenticator hideDefault={true}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './NoteForm.css';
 
 class NoteForm extends Component {
-  // TODO - center only form field instead of both form and button
+  // TODO - add cancel update button ?
   constructor(props) {
     super(props);
     this.state = {

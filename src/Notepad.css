@@ -1,5 +1,6 @@
 .Notepad-container { display: grid;
   grid-template-columns: 250px repeat(auto-fill, minmax(450px, 1fr));
+  grid-gap: 0.5rem;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

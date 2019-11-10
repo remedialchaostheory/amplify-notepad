@@ -15,15 +15,18 @@ class Notepad extends Component {
       notes: [],
       id: "",
       form: "",
+      hoveredNote: "",  // id
       isHoveredButton: false,
-      isHoveredCrisscross: false,
+      isHoveredCross: false,
     };
     this.handleAddNote = this.handleAddNote.bind(this);
     this.handleEditNote = this.handleEditNote.bind(this);
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleChangeNote = this.handleChangeNote.bind(this);
+    this.handleHoveredNote = this.handleHoveredNote.bind(this);
     this.handleHoverButton = this.handleHoverButton.bind(this);
+    this.handleHoverCross = this.handleHoverCross.bind(this);
     this.getNotes = this.getNotes.bind(this);
     this.getUsername = this.getUsername.bind(this);
   }
@@ -128,8 +131,16 @@ class Notepad extends Component {
 
   handleChangeNote(e) { this.setState({ form: e.target.value }) }
 
+  handleHoveredNote(noteId) {
+    this.setState(st => ({ hoveredNote: noteId }));
+  }
+
   handleHoverButton(e) {
     this.setState(st => ({ isHoveredButton: !st.isHoveredButton }));
+  }
+
+  handleHoverCross(e) {
+    this.setState(st => ({ isHoveredCross: !st.isHoveredCross }));
   }
 
   render() {
@@ -150,6 +161,10 @@ class Notepad extends Component {
                 notes={this.state.notes}
                 handleEditNote={this.handleEditNote}
                 handleDeleteNote={this.handleDeleteNote}
+                handleHoveredNote={this.handleHoveredNote}
+                hoveredNote={this.state.hoveredNote}
+                handleHoverCross={this.handleHoverCross}
+                isHoveredCross={this.state.isHoveredCross}
             />
           </div>
         </div>

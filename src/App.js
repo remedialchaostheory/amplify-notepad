@@ -2,14 +2,24 @@ import React from 'react';
 import Notepad from "./Notepad";
 import './App.css';
 import { withAuthenticator, Authenticator, AmplifyTheme, Greetings } from "aws-amplify-react";
+import { Auth } from "aws-amplify";
 
 function App() {
   // TODO - display email or username in navbar greeting
+  let currUser;
+  Auth.currentAuthenticatedUser()
+      .then(user => {
+        console.log('user.attributes.email ->', user.attributes.email);
+        // console.log('currUser ->', currUser);
+        currUser = user.attributes.email;
+      })
+      .catch(err => console.log(err));
+
   return (
     <div>
       <Authenticator hideDefault={true}>
         <Greetings
-            inGreeting={(username) => 'Yo ' + username}
+            inGreeting={() => 'Welcome, ' + currUser}
             outGreeting="Please sign in..."
         />
       </Authenticator>

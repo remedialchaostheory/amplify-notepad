@@ -10,3 +10,26 @@ html {
 .Nav__navBar___xtCFA {
   background-color: #F4F4F4;
 }
+
+/* Signed in app navbar */
+.Section__container___3YYTG {
+  margin: 0 auto;
+  width: 97%;
+  font-family: "Helvetica Neue";
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+/* Signed in app navbar "sign out" button */
+.Button__button___vS7Mv {
+  margin: .7rem;
+  /*padding: 1rem;*/
+  border-radius: 5px;
+  border: 1px solid rgb(204, 204, 204);
+  color: rgb(51, 51, 51);
+  background-color: rgb(255, 255, 255);
+  padding: .4rem .8rem;
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.82rem;
+}

@@ -6,6 +6,7 @@ import { AmplifyTheme } from "aws-amplify-react"; // Necessary to style with cus
 import { createNote, deleteNote, updateNote } from "./graphql/mutations";
 import { listNotes } from "./graphql/queries";
 import { onCreateNote, onDeleteNote, onUpdateNote } from "./graphql/subscriptions";
+import './Notepad.css';
 
 class Notepad extends Component {
   constructor(props) {
@@ -147,7 +148,7 @@ class Notepad extends Component {
     return (
         <div className="center mw8 pa3 vh-100 br4 bg-washed-yellow">
           <h1 className="tc avenir">Notepad</h1>
-          <div className="flex justify-center items-center">
+          <div className="Notepad-container">
             <NoteForm
                 form={this.state.form}
                 handleAddNote={this.handleAddNote}

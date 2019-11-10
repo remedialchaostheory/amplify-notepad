@@ -6,7 +6,7 @@ class NoteList extends Component {
   render() {
     const strikeOnHoveredCross = noteId => (this.props.isHoveredCross && noteId === this.props.hoveredNote) && "strike";
     return (
-        <div className="fl w-100 w-65-ns sans-serif pointer">
+        <div className="ph1 sans-serif pointer">
           <ReactCSSTransitionGroup
               transitionName="fade"
               transitionEnterTimeout={0}

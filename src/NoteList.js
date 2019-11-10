@@ -22,8 +22,8 @@ class NoteList extends Component {
                 {/* Delete */}
                 <button
                     className="bg-transparent bn f4 grow-large"
-                    onMouseEnter={this.props.handleHoverCross}
-                    onMouseLeave={this.props.handleHoverCross}
+                    onMouseEnter={this.props.handleHoveredCross}
+                    onMouseLeave={this.props.handleHoveredCross}
                     onClick={() => this.props.handleDeleteNote(note.id)}
                 >
                   <span>&times;</span>

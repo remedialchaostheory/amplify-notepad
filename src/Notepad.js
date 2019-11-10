@@ -25,8 +25,8 @@ class Notepad extends Component {
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleChangeNote = this.handleChangeNote.bind(this);
     this.handleHoveredNote = this.handleHoveredNote.bind(this);
-    this.handleHoverButton = this.handleHoverButton.bind(this);
-    this.handleHoverCross = this.handleHoverCross.bind(this);
+    this.handleHoveredButton = this.handleHoveredButton.bind(this);
+    this.handleHoveredCross = this.handleHoveredCross.bind(this);
     this.getNotes = this.getNotes.bind(this);
     this.getUsername = this.getUsername.bind(this);
   }
@@ -135,11 +135,11 @@ class Notepad extends Component {
     this.setState(st => ({ hoveredNote: noteId }));
   }
 
-  handleHoverButton(e) {
+  handleHoveredButton(e) {
     this.setState(st => ({ isHoveredButton: !st.isHoveredButton }));
   }
 
-  handleHoverCross(e) {
+  handleHoveredCross(e) {
     this.setState(st => ({ isHoveredCross: !st.isHoveredCross }));
   }
 
@@ -153,7 +153,7 @@ class Notepad extends Component {
                 handleAddNote={this.handleAddNote}
                 handleEditNote={this.handleEditNote}
                 handleChangeNote={this.handleChangeNote}
-                handleHoverButton={this.handleHoverButton}
+                handleHoveredButton={this.handleHoveredButton}
                 isUpdate={this.state.id}
                 isHoveredButton={this.state.isHoveredButton}
             />
@@ -163,7 +163,7 @@ class Notepad extends Component {
                 handleDeleteNote={this.handleDeleteNote}
                 handleHoveredNote={this.handleHoveredNote}
                 hoveredNote={this.state.hoveredNote}
-                handleHoverCross={this.handleHoverCross}
+                handleHoveredCross={this.handleHoveredCross}
                 isHoveredCross={this.state.isHoveredCross}
             />
           </div>

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './NoteList.css';
 
 class NoteList extends Component {
-  // TODO - add strikethrough when deleted
   render() {
+    const strikeOnHoveredCross = noteId => (this.props.isHoveredCross && noteId === this.props.hoveredNote) && "strike";
     return (
         <div className="fl w-100 w-65-ns sans-serif">
           {this.props.notes.map(note => (
@@ -14,7 +14,7 @@ class NoteList extends Component {
                   onMouseLeave={() => this.props.handleHoveredNote("")}
               >
                 <li
-                    className={`list pa1 fa3 ${(this.props.isHoveredCross && note.id === this.props.hoveredNote) && "strike"}`}
+                    className={`list pa1 fa3 ${this.props.hoveredNote && "dim"} ${strikeOnHoveredCross(note.id)}`}
                     onClick={() => this.props.handleEditNote(note)}
                 >
                   {note.note}

@@ -34,7 +34,7 @@ html {
   font-size: 0.82rem;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media all and (max-device-width : 480px) {
   /* Signed in app navbar */
   .Nav__navItem___1LtFQ {
     margin-top: .5rem;

@@ -3,19 +3,20 @@
 }
 
 .NoteForm-input {
-  float: right;
+  width: 100%;
 }
 
 .NoteForm-button {
   float: right;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media all and (max-device-width : 480px) {
   .NoteForm {
     padding-bottom: 1rem;
   }
   .NoteForm-input {
-    float: none;
+    width: 100%;
+    /*float: none;*/
   }
 }
 

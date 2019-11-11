@@ -9,8 +9,6 @@ function App() {
   let currUser;
   Auth.currentAuthenticatedUser()
       .then(user => {
-        console.log('user.attributes.email ->', user.attributes.email);
-        // console.log('currUser ->', currUser);
         currUser = user.attributes.email;
       })
       .catch(err => console.log(err));

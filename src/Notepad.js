@@ -25,6 +25,7 @@ class Notepad extends Component {
     this.handleUpdateNote = this.handleUpdateNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
     this.handleChangeNote = this.handleChangeNote.bind(this);
+    this.handleCancelUpdate = this.handleCancelUpdate.bind(this);
     this.handleHoveredNote = this.handleHoveredNote.bind(this);
     this.handleHoveredButton = this.handleHoveredButton.bind(this);
     this.handleHoveredCross = this.handleHoveredCross.bind(this);
@@ -116,6 +117,13 @@ class Notepad extends Component {
     };
     await API.graphql(graphqlOperation(updateNote, { input: input }));
   };
+
+  handleCancelUpdate(e) {
+    this.setState({
+      form: "",
+      id: "",
+    });
+  }
 
   handleEditNote(e) {
     this.setState({

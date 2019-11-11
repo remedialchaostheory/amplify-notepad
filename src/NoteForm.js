@@ -11,6 +11,10 @@ class NoteForm extends Component {
 
   render() {
     const arrowSymbol = <span className="f3 br--right">&#8669;</span>;
+    const cancelUpdateBtn = <button
+        className="pa1 f4 br3 bg-near-white dim pointer"
+        onClick={this.props.handleCancelUpdate}
+    >Cancel</button>;
     return (
         <div className="NoteForm pa1 avenir">
           <form
@@ -23,6 +27,7 @@ class NoteForm extends Component {
                 onChange={this.props.handleChangeNote} // TODO - rename this or add a relevant comment
                 value={this.props.form}
             />
+            {this.props.isUpdate && cancelUpdateBtn}
             <button
                 className={`NoteForm-button bg-white pa1 ph2 f4 ml1 br3 pointer ${this.props.isHoveredButton && 'bg-washed-green'}`}
                 onMouseEnter={this.props.handleHoveredButton}
@@ -36,7 +41,6 @@ class NoteForm extends Component {
         </div>
     )
   }
-
 }
 
 export default NoteForm;

@@ -5,7 +5,6 @@ import { withAuthenticator, Authenticator, AmplifyTheme, Greetings } from "aws-a
 import { Auth } from "aws-amplify";
 
 function App() {
-  // TODO - display email or username in navbar greeting
   let currUser;
   Auth.currentAuthenticatedUser()
       .then(user => {

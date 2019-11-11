@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './NoteForm.css';
 
 class NoteForm extends Component {
-  // TODO - add cancel update button ?
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +23,7 @@ class NoteForm extends Component {
                 type="text"
                 className="NoteForm-input pa1 f4 br2"
                 placeholder="Write your note here"
-                onChange={this.props.handleChangeNote} // TODO - rename this or add a relevant comment
+                onChange={this.props.handleChangeNote}
                 value={this.props.form}
             />
             {this.props.isUpdate && cancelUpdateBtn}

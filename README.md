@@ -1,5 +1,7 @@
 # Notepad
 
+![](demo.gif)
+
 [Demo](https://rct-amplify-notepad.s3.amazonaws.com/index.html)
 
 Need to jot down some notes or remember stuff?<br>

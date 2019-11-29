@@ -10,5 +10,9 @@ Use a notepad! (like this one)
 Utilizes [AWS Amplify](https://aws.amazon.com/amplify) to efforlessly tie together a fullstack serverless application. Includes authentication, data, file storage, and more..
 
 If you don't want to create an account, feel free to use `test@example.com` for the username *and* password.
-
-Built with React.js and GraphQL
+<br>
+<br>
+<ins>Built with</ins><br>
+React.js<br>
+GraphQL<br>
+AWS Amplify / AppSync / Cognito / DynamoDB / Lambda / s3

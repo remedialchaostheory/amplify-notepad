@@ -15,4 +15,4 @@ If you don't want to create an account, feel free to use `test@example.com` for 
 <ins>Built with</ins><br>
 React.js<br>
 GraphQL<br>
-AWS Amplify / AppSync / Cognito / DynamoDB / Lambda / s3
+AWS Amplify / AppSync / Cognito / DynamoDB / Lambda

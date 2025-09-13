@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^1.2.4",
+    "aws-amplify": "^6.15.6",
     "aws-amplify-react": "^2.5.4",
     "react": "^16.11.0",
     "react-addons-css-transition-group": "^15.6.2",
